@@ -8,6 +8,8 @@ import Contact from './components/Contact';
 import Testimonials from '../src/components/Testimonials';
 import Pricing from '../src/components/Pricing';
 import Blog from '../src/components/Blog';
+import Team from '../src/components/Team';
+import FAQ from '../src/components/FAQ';
 import Footer from '../src/components/Footer';
 import '../src/App.css';
 
@@ -23,6 +25,8 @@ function App() {
         <Route path="/testimonials" element={<Testimonials />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
       <Footer />
     </Router>
