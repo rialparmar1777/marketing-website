@@ -7,6 +7,7 @@
   .testimonials h2 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
+    color: #282c34;
   }
   
   .testimonials-list {
@@ -22,19 +23,57 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .testimonial-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   }
   
   .testimonial-item img {
     border-radius: 50%;
     margin-bottom: 1rem;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
   }
   
   .testimonial-item h3 {
     font-size: 1.5rem;
     margin-bottom: 0.5rem;
+    color: #282c34;
   }
   
   .testimonial-item p {
     font-size: 1rem;
     color: #555;
+    margin-bottom: 0.5rem;
+  }
+  
+  .testimonial-item p:last-child {
+    margin-bottom: 0;
+  }
+  
+ /* Dark Mode Styles */
+body.dark-mode .testimonials {
+    background-color: #1f1f1f;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .testimonials h2 {
+    color: #ffffff;
+  }
+  
+  body.dark-mode .testimonial-item {
+    background-color: #2d2d2d;
+    color: #ffffff;
+  }
+  
+  body.dark-mode .testimonial-item h3 {
+    color: #61dafb;
+  }
+  
+  body.dark-mode .testimonial-item p {
+    color: #ccc;
   }

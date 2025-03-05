@@ -8,21 +8,21 @@ const Testimonials = () => {
       name: 'John Doe',
       role: 'CEO, TechCorp',
       comment: 'This product has transformed our workflow. Highly recommended!',
-      image: 'https://via.placeholder.com/150',
+      image: 'https://picsum.photos/150/150?random=1', // Random image from Picsum
     },
     {
       id: 2,
       name: 'Jane Smith',
       role: 'CTO, InnovateX',
       comment: 'Incredible features and excellent support. A game-changer!',
-      image: 'https://via.placeholder.com/150',
+      image: 'https://picsum.photos/150/150?random=2', // Random image from Picsum
     },
     {
       id: 3,
       name: 'Alice Johnson',
       role: 'Product Manager, NextGen',
       comment: 'The best investment we’ve made for our team.',
-      image: 'https://via.placeholder.com/150',
+      image: 'https://picsum.photos/150/150?random=3', // Random image from Picsum
     },
   ];
 
