@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import "../src/styles/Home.css";
+import './styles/Home.css';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to Our Product</h1>
-      <p>Discover the amazing features of our new product.</p>
-      <Link to="/features">Learn More</Link>
+    <div className="home">
+      <div className="home-content">
+        <h1>Welcome to TechProduct</h1>
+        <p>Discover the future of technology with our innovative product.</p>
+        <Link to="/features" className="cta-button">Explore Features</Link>
+      </div>
     </div>
   );
 };

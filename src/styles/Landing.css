@@ -1,0 +1,37 @@
+.landing {
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #e9ecef;
+  }
+  
+  .landing h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .signup-form {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .signup-form input {
+    padding: 0.8rem;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .signup-form button {
+    padding: 0.8rem 2rem;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    color: #282c34;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .signup-form button:hover {
+    background-color: #21a1f1;
+  }
