@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/Landing.css';
+import '../styles/Landing.css';
 
 const Landing = () => {
   const [email, setEmail] = useState('');
