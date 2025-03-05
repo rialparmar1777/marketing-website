@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 import { motion } from 'framer-motion';
 
-
 const Home = () => {
   return (
     <motion.div
@@ -15,7 +14,10 @@ const Home = () => {
       <div className="home-content">
         <h1>Welcome to TechProduct</h1>
         <p>Discover the future of technology with our innovative product.</p>
-        <Link to="/features" className="cta-button">Explore Features</Link>
+        <div className="cta-buttons">
+          <Link to="/features" className="cta-button">Explore Features</Link>
+          <Link to="/pricing" className="cta-button">View Pricing</Link>
+        </div>
       </div>
     </motion.div>
   );

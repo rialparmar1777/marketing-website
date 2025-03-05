@@ -1,37 +1,53 @@
 .home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: white;
-    text-align: center;
-  }
-  
-  .home-content {
-    max-width: 600px;
-  }
-  
-  .home h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-  }
-  
-  .home p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-  }
-  
-  .cta-button {
-    padding: 0.8rem 2rem;
-    background-color: #61dafb;
-    color: #282c34;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: background-color 0.3s;
-  }
-  
-  .cta-button:hover {
-    background-color: #21a1f1;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  color: white;
+  text-align: center;
+}
+
+.home-content {
+  max-width: 800px;
+}
+
+.home h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.home p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.cta-button {
+  padding: 0.8rem 2rem;
+  background-color: #61dafb;
+  color: #282c34;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #21a1f1;
+}
+
+/* Dark Mode Styles */
+body.dark-mode .home {
+  background: linear-gradient(to right, #1f1f1f, #121212);
+}
+
+body.dark-mode .cta-button {
+  background-color: #61dafb;
+  color: #282c34;
+}
