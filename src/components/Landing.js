@@ -13,16 +13,21 @@ const Landing = () => {
   return (
     <div className="landing">
       <h2>Sign Up for More Information</h2>
-      <form onSubmit={handleSubmit} className="signup-form">
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <button type="submit">Sign Up</button>
-      </form>
+      <div className="landing-content">
+        <div className="landing-image">
+          <img src="https://picsum.photos/400/300?random=5" alt="Sign Up" />
+        </div>
+        <form onSubmit={handleSubmit} className="signup-form">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
     </div>
   );
 };

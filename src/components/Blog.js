@@ -8,21 +8,21 @@ const Blog = () => {
       title: '10 Tips for Better Productivity',
       date: 'March 1, 2023',
       excerpt: 'Discover how to boost your productivity with these simple tips.',
-      image: 'https://via.placeholder.com/300',
+      image: 'https://picsum.photos/300/200?random=6',
     },
     {
       id: 2,
       title: 'The Future of Technology',
       date: 'February 25, 2023',
       excerpt: 'Explore the latest trends shaping the future of technology.',
-      image: 'https://via.placeholder.com/300',
+      image: 'https://picsum.photos/300/200?random=7',
     },
     {
       id: 3,
       title: 'Why Collaboration Matters',
       date: 'February 20, 2023',
       excerpt: 'Learn why collaboration is key to success in the modern workplace.',
-      image: 'https://via.placeholder.com/300',
+      image: 'https://picsum.photos/300/200?random=8',
     },
   ];
 
