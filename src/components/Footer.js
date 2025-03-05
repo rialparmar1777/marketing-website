@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3>About Us</h3>
           <p>
-            We are a tech company dedicated to delivering innovative solutions that empower businesses and individuals.
+            We are a tech company delivering cutting-edge solutions that empower businesses and individuals.
           </p>
         </div>
         <div className="footer-section">

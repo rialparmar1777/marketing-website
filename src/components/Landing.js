@@ -1,34 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import '../styles/Landing.css';
 
 const Landing = () => {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert(`Thank you for signing up! We'll contact you at ${email}.`);
-    setEmail('');
-  };
+  const [ref, inView] = useInView({
+    threshold: 0.3,
+    triggerOnce: true
+  });
 
   return (
-    <div className="landing">
-      <h2>Sign Up for More Information</h2>
-      <div className="landing-content">
-        <div className="landing-image">
-          <img src="https://picsum.photos/400/300?random=5" alt="Sign Up" />
-        </div>
-        <form onSubmit={handleSubmit} className="signup-form">
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit">Sign Up</button>
-        </form>
+    <section className="hero-section" ref={ref}>
+      <div className="hero-content">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+          className="hero-title"
+        >
+          Transform Your Digital Presence
+        </motion.h1>
+        
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="hero-subtitle"
+        >
+          Innovative solutions for modern businesses
+        </motion.p>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="hero-cta"
+        >
+          <button className="primary-btn">Get Started</button>
+          <button className="secondary-btn">Learn More</button>
+        </motion.div>
       </div>
-    </div>
+      
+      <motion.div
+        className="hero-image"
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={inView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 1 }}
+      >
+        <img src="/images/hero-illustration.svg" alt="Hero Illustration" />
+      </motion.div>
+    </section>
   );
 };
 
