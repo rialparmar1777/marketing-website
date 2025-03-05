@@ -36,6 +36,43 @@ body {
   flex-direction: column;
   min-height: 100vh; /* Ensures the body takes at least the full viewport height */
 }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+}
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+body.dark-mode .navbar {
+  background-color: #1f1f1f;
+}
+
+body.dark-mode .footer {
+  background-color: #1f1f1f;
+}
+body.dark-mode .testimonials,
+body.dark-mode .pricing,
+body.dark-mode .blog {
+  background-color: #1f1f1f;
+  color: #ffffff;
+}
+
+body.dark-mode .testimonial-item,
+body.dark-mode .pricing-item,
+body.dark-mode .blog-post {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+body.dark-mode .testimonial-item p,
+body.dark-mode .pricing-item p,
+body.dark-mode .blog-post p {
+  color: #ccc;
+}
 
 @keyframes App-logo-spin {
   from {

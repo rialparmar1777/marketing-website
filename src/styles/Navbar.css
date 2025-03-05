@@ -16,6 +16,7 @@
     list-style: none;
     display: flex;
     gap: 1.5rem;
+    align-items: center;
   }
   
   .navbar-links a {
@@ -26,4 +27,19 @@
   
   .navbar-links a:hover {
     color: #61dafb;
+  }
+  
+  .dark-mode-toggle {
+    padding: 0.5rem 1rem;
+    background-color: #61dafb;
+    border: none;
+    border-radius: 5px;
+    color: #282c34;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+  }
+  
+  .dark-mode-toggle:hover {
+    background-color: #21a1f1;
   }
