@@ -408,7 +408,7 @@ body.dark-mode .sdk-card p {
   color: #a1a1a1;
 }
 
-/* Responsive Adjustments */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .docs-page {
     padding: 1rem;
@@ -431,5 +431,55 @@ body.dark-mode .sdk-card p {
   .rate-limits,
   .sdk-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feature-item {
+    padding: 0.75rem;
+  }
+
+  .code-block {
+    margin: 0.75rem 0;
+  }
+
+  .code-block pre {
+    padding: 0.75rem;
+  }
+
+  .code-block code {
+    font-size: 0.75rem;
+  }
+
+  .endpoint-card,
+  .rate-limit-card,
+  .sdk-card {
+    padding: 1rem;
+  }
+
+  .endpoint-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .step-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .step-card:hover,
+  .next-step-card:hover,
+  .sdk-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Safe Area Insets for Modern Mobile Devices */
+@supports (padding: max(0px)) {
+  .docs-page {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
   }
 } 

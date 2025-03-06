@@ -288,7 +288,7 @@ body.dark-mode .custom-solution-card p {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Adjustments */
+/* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .solutions-page {
     padding: 1rem;
@@ -312,11 +312,60 @@ body.dark-mode .custom-solution-card p {
     grid-template-columns: 1fr;
   }
 
+  .feature-card,
+  .support-section,
+  .custom-solution-card {
+    padding: 1rem;
+  }
+
+  .feature-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .support-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .custom-solution-icon {
+    width: 48px;
+    height: 48px;
+  }
+
   .cta-section {
     padding: 2rem;
   }
 
   .cta-section h2 {
     font-size: 1.75rem;
+  }
+
+  .cta-section button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+  .feature-card:hover,
+  .custom-solution-card button:hover,
+  .cta-section button:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Safe Area Insets for Modern Mobile Devices */
+@supports (padding: max(0px)) {
+  .solutions-page {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .cta-section {
+    margin-left: max(0, env(safe-area-inset-left));
+    margin-right: max(0, env(safe-area-inset-right));
   }
 } 
