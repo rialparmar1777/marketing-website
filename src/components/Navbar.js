@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Menu, X, Check, ArrowRight, Mail, Building2, User,
-  Bell, Globe, Sun, Moon, Gift, Sparkles, Shield, 
-  Clock, CreditCard, Zap
+  Sun, Moon, Gift, Sparkles, Shield, 
+  Clock, CreditCard, Zap, Search
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Navbar.css';
@@ -211,15 +211,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { 
-      name: 'Products', 
-      path: '/products',
-      submenu: [
-        { name: 'Analytics Platform', path: '/products/analytics' },
-        { name: 'Team Collaboration', path: '/products/collaboration' },
-        { name: 'Security Solutions', path: '/products/security' }
-      ]
-    },
+    { name: 'About', path: '/about' },
     { name: 'Features', path: '/features' },
     { name: 'Pricing', path: '/pricing' },
     { name: 'Case Studies', path: '/case-studies' },
@@ -270,15 +262,21 @@ const Navbar = () => {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              className="logo-container"
             >
-              <span className="logo-text">YourBrand</span>
-              <span className="logo-badge">Beta</span>
+              <div className="logo-icon">
+                <span className="logo-icon-text">Y</span>
+              </div>
+              <div className="logo-text-container">
+                <span className="logo-text">YourBrand</span>
+                <span className="logo-badge">Beta</span>
+              </div>
             </motion.div>
           </Link>
 
           <div className="nav-desktop">
             {navItems.map((item, index) => (
-              <div key={index} className={`nav-item ${item.submenu ? 'has-submenu' : ''}`}>
+              <div key={index} className="nav-item">
                 <Link
                   to={item.path}
                   className="nav-link"
@@ -286,37 +284,27 @@ const Navbar = () => {
                   <motion.div
                     whileHover={{ y: -2 }}
                     whileTap={{ y: 0 }}
+                    className="nav-link-content"
                   >
                     {item.name}
-                    {item.submenu && <ArrowRight size={12} className="submenu-arrow" />}
                   </motion.div>
                 </Link>
-                {item.submenu && (
-                  <div className="submenu">
-                    {item.submenu.map((subitem, subindex) => (
-                      <Link
-                        key={subindex}
-                        to={subitem.path}
-                        className="submenu-link"
-                      >
-                        {subitem.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
               </div>
             ))}
             
             <div className="nav-actions">
-              <button className="nav-icon-button" onClick={toggleTheme}>
+              <button 
+                className="nav-icon-button search-button" 
+                aria-label="Search"
+              >
+                <Search size={20} />
+              </button>
+              <button 
+                className="nav-icon-button theme-toggle" 
+                onClick={toggleTheme}
+                aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+              >
                 {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
-              </button>
-              <button className="nav-icon-button">
-                <Globe size={20} />
-              </button>
-              <button className="nav-icon-button notification-button">
-                <Bell size={20} />
-                <span className="notification-badge">2</span>
               </button>
               <motion.button
                 className="nav-cta"
@@ -324,8 +312,10 @@ const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowGetStarted(true)}
               >
-                Get Started
-                <ArrowRight size={16} />
+                <span className="cta-text">Get Started</span>
+                <span className="cta-arrow">
+                  <ArrowRight size={16} />
+                </span>
               </motion.button>
             </div>
           </div>
@@ -333,6 +323,7 @@ const Navbar = () => {
           <button
             className="nav-toggle"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -356,30 +347,21 @@ const Navbar = () => {
                   >
                     {item.name}
                   </Link>
-                  {item.submenu && (
-                    <div className="mobile-submenu">
-                      {item.submenu.map((subitem, subindex) => (
-                        <Link
-                          key={subindex}
-                          to={subitem.path}
-                          className="mobile-submenu-link"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {subitem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
                 </div>
               ))}
               <div className="mobile-actions">
-                <button className="mobile-action-button" onClick={toggleTheme}>
+                <button 
+                  className="mobile-action-button search-button" 
+                >
+                  <Search size={20} />
+                  <span>Search</span>
+                </button>
+                <button 
+                  className="mobile-action-button" 
+                  onClick={toggleTheme}
+                >
                   {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
                   <span>{isDarkMode ? 'Light Mode' : 'Dark Mode'}</span>
-                </button>
-                <button className="mobile-action-button">
-                  <Globe size={20} />
-                  <span>Language</span>
                 </button>
                 <button 
                   className="nav-mobile-cta"
@@ -388,8 +370,10 @@ const Navbar = () => {
                     setShowGetStarted(true);
                   }}
                 >
-                  Get Started
-                  <ArrowRight size={16} />
+                  <span className="cta-text">Get Started</span>
+                  <span className="cta-arrow">
+                    <ArrowRight size={16} />
+                  </span>
                 </button>
               </div>
             </motion.div>

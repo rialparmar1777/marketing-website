@@ -14,6 +14,7 @@ import CaseStudies from '../src/components/CaseStudies';
 import ClientLogos from '../src/components/ClientLogos';
 import Newsletter from '../src/components/Newsletter';
 import Footer from '../src/components/Footer';
+import About from '../src/components/About';
 import '../src/App.css';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path="/faq" element={<FAQ />} />
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/clients" element={<ClientLogos />} />
+        <Route path="/about" element={<About />} />
       </Routes>
       <Newsletter />
       <Footer />
