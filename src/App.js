@@ -1,42 +1,42 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from '../src/components/Navbar';
-import Home from '../src/components/Home';
-import Features from '../src/components/Features';
-import Landing from '../src/components/Landing';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './components/Home';
+import About from './components/About';
+import Features from './components/Features';
+import Pricing from './components/Pricing';
+import CaseStudies from './components/CaseStudies';
+import Blog from './components/Blog';
 import Contact from './components/Contact';
-import Testimonials from '../src/components/Testimonials';
-import Pricing from '../src/components/Pricing';
-import Blog from '../src/components/Blog';
-import Team from '../src/components/Team';
-import FAQ from '../src/components/FAQ';
-import CaseStudies from '../src/components/CaseStudies';
-import ClientLogos from '../src/components/ClientLogos';
-import Newsletter from '../src/components/Newsletter';
-import Footer from '../src/components/Footer';
-import About from '../src/components/About';
-import '../src/App.css';
+import Footer from './components/Footer';
+import GettingStarted from './components/docs/GettingStarted';
+import ApiReference from './components/docs/ApiReference';
+import Enterprise from './components/solutions/Enterprise';
+import './styles/App.css';
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/features" element={<Features />} />
-        <Route path="/landing" element={<Landing />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/pricing" element={<Pricing />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="/case-studies" element={<CaseStudies />} />
-        <Route path="/clients" element={<ClientLogos />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-      <Newsletter />
-      <Footer />
+      <div className="app">
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/features" element={<Features />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/contact" element={<Contact />} />
+            {/* Documentation Routes */}
+            <Route path="/docs/getting-started" element={<GettingStarted />} />
+            <Route path="/docs/api" element={<ApiReference />} />
+            {/* Solutions Routes */}
+            <Route path="/solutions/enterprise" element={<Enterprise />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </Router>
   );
 }

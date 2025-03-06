@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Menu, X, Check, ArrowRight, Mail, Building2, User,
   Sun, Moon, Gift, Sparkles, Shield, 
-  Clock, CreditCard, Zap, Search
+  Clock, CreditCard, Zap, Search, Loader2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Navbar.css';
@@ -27,6 +27,11 @@ const Navbar = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchError, setSearchError] = useState(null);
 
   const plans = [
     {
@@ -231,6 +236,79 @@ const Navbar = () => {
     );
   };
 
+  // Mock search data - replace with your actual data source
+  const searchData = useMemo(() => [
+    { title: 'Getting Started Guide', category: 'Documentation', url: '/docs/getting-started' },
+    { title: 'API Reference', category: 'Documentation', url: '/docs/api' },
+    { title: 'Pricing Plans', category: 'Pricing', url: '/pricing' },
+    { title: 'Enterprise Solutions', category: 'Solutions', url: '/solutions/enterprise' },
+    { title: 'Customer Success Stories', category: 'Resources', url: '/case-studies' },
+    { title: 'Blog', category: 'Resources', url: '/blog' },
+    { title: 'Contact Sales', category: 'Support', url: '/contact' },
+  ], []); // Empty dependency array since this data is static
+
+  const handleSearch = useCallback(async (query) => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+    setSearchError(null);
+
+    try {
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // Filter results based on query
+      const results = searchData.filter(item => 
+        item.title.toLowerCase().includes(query.toLowerCase()) ||
+        item.category.toLowerCase().includes(query.toLowerCase())
+      );
+
+      setSearchResults(results);
+    } catch (error) {
+      setSearchError('Failed to fetch search results. Please try again.');
+      console.error('Search error:', error);
+    } finally {
+      setIsSearching(false);
+    }
+  }, [searchData]); // searchData is now stable
+
+  const handleSearchInput = useCallback((e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    handleSearch(query);
+  }, [handleSearch]);
+
+  const handleSearchKeyDown = useCallback((e) => {
+    if (e.key === 'Escape') {
+      setShowSearch(false);
+      setSearchQuery('');
+      setSearchResults([]);
+    }
+  }, []);
+
+  // Add debounced search to prevent too many API calls
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      if (searchQuery.trim()) {
+        handleSearch(searchQuery);
+      }
+    }, 300); // 300ms debounce
+
+    return () => clearTimeout(timeoutId);
+  }, [searchQuery, handleSearch]);
+
+  // Cleanup search state when modal closes
+  useEffect(() => {
+    if (!showSearch) {
+      setSearchQuery('');
+      setSearchResults([]);
+      setSearchError(null);
+    }
+  }, [showSearch]);
+
   return (
     <>
       {showNotification && (
@@ -296,6 +374,7 @@ const Navbar = () => {
               <button 
                 className="nav-icon-button search-button" 
                 aria-label="Search"
+                onClick={() => setShowSearch(true)}
               >
                 <Search size={20} />
               </button>
@@ -601,6 +680,98 @@ const Navbar = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Search Modal */}
+      <AnimatePresence>
+        {showSearch && (
+          <motion.div
+            className="search-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setShowSearch(false)}
+          >
+            <motion.div
+              className="search-modal"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="search-header">
+                <div className="search-input-container">
+                  <Search size={20} />
+                  <input
+                    type="text"
+                    placeholder="Search documentation, guides, and more..."
+                    value={searchQuery}
+                    onChange={handleSearchInput}
+                    onKeyDown={handleSearchKeyDown}
+                    autoFocus
+                  />
+                </div>
+                <button
+                  className="search-close"
+                  onClick={() => setShowSearch(false)}
+                >
+                  <X size={20} />
+                </button>
+              </div>
+
+              <div className="search-content">
+                {isSearching ? (
+                  <div className="search-loading">
+                    <Loader2 size={24} className="spinning" />
+                    <p>Searching...</p>
+                  </div>
+                ) : searchError ? (
+                  <div className="search-error">
+                    <p>{searchError}</p>
+                  </div>
+                ) : searchResults.length > 0 ? (
+                  <div className="search-results">
+                    {searchResults.map((result, index) => (
+                      <motion.a
+                        key={index}
+                        href={result.url}
+                        className="search-result-item"
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                      >
+                        <div className="result-title">{result.title}</div>
+                        <div className="result-category">{result.category}</div>
+                      </motion.a>
+                    ))}
+                  </div>
+                ) : searchQuery ? (
+                  <div className="search-no-results">
+                    <p>No results found for "{searchQuery}"</p>
+                  </div>
+                ) : (
+                  <div className="search-suggestions">
+                    <h3>Popular Searches</h3>
+                    <div className="suggestion-grid">
+                      {searchData.slice(0, 6).map((item, index) => (
+                        <button
+                          key={index}
+                          className="suggestion-item"
+                          onClick={() => {
+                            setSearchQuery(item.title);
+                            handleSearch(item.title);
+                          }}
+                        >
+                          {item.title}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.div>
           </motion.div>
